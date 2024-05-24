@@ -1,0 +1,144 @@
+swagger: "2.0"
+info:
+  description: "API for managing blackboards."
+  version: "1.0.0"
+  title: "Blackboard Management API"
+host: "api.example.com"
+basePath: "/v1"
+schemes:
+- "https"
+paths:
+  /blackboards:
+    get:
+      summary: "List all blackboards"
+      description: "Returns a list of all blackboard names."
+      responses:
+        200:
+          description: "A list of blackboard names."
+          schema:
+            type: "array"
+            items:
+              type: "string"
+    delete:
+      summary: "Delete all blackboards"
+      description: "Deletes all blackboards."
+      responses:
+        200:
+          description: "A message indicating the result."
+          schema:
+            type: "string"
+  /blackboards/{blackboardName}:
+    post:
+      summary: "Create a blackboard"
+      description: "Creates a new blackboard with the specified name and the time in seconds how long a message posted to the board should be valid. A message validity length of 0 will never expire."
+      parameters:
+      - name: "blackboardName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "data"
+        in: "body"
+        required: true
+        schema:
+          type: "integer"
+          default: 30
+      responses:
+        200:
+          description: "A message indicating the result."
+          schema:
+            type: "string"
+        409:
+          description: "The blackboard already exists."
+          schema:
+            type: "string"
+        400:
+          description: "Invalid parameters."
+          schema:
+            type: "string"
+        500:
+          description: "Internal server error."
+          schema:
+            type: "string"
+    delete:
+      summary: "Delete a blackboard"
+      description: "Deletes the blackboard with the specified name."
+      parameters:
+      - name: "blackboardName"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "A message indicating the result."
+          schema:
+            type: "string"
+    get:
+      summary: "Read a blackboard"
+      description: "Returns the contents of the blackboard with the specified name."
+      parameters:
+      - name: "blackboardName"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "The contents of the blackboard."
+          schema:
+            type: "string"
+  /blackboards/{blackboardName}/status:
+    get:
+      summary: "Get blackboard status"
+      description: "Returns the status of the blackboard with the specified name."
+      parameters:
+      - name: "blackboardName"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "The status of the blackboard."
+          schema:
+            type: "object"
+            properties:
+              bb_empty:
+                type: "boolean"
+              msg_time:
+                type: "integer"
+                format: "int64"
+                description: "Unix timestamp"
+              msg_valid:
+                type: "boolean"
+  /blackboards/{blackboardName}/clear:
+    delete:
+      summary: "Clear a blackboard"
+      description: "Clears the contents of the blackboard with the specified name."
+      parameters:
+      - name: "blackboardName"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "A message indicating the result."
+          schema:
+            type: "string"
+  /blackboards/{blackboardName}/write:
+    post:
+      summary: "Write to a blackboard"
+      description: "Writes data to the blackboard with the specified name."
+      parameters:
+      - name: "blackboardName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "data"
+        in: "body"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "A message indicating the result."
+          schema:
+            type: "string"
+definitions: {}
