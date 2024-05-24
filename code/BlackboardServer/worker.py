@@ -29,7 +29,7 @@ class BlackboardWorker:
     def clear_bb(self, name):
         if name not in self.blackboards:
             return False
-        self.blackboards[name].set_current_msg(None)
+        self.blackboards[name].set_current_msg("")
         return True
 
     def read_bb(self, name):

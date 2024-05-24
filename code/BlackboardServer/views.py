@@ -18,7 +18,7 @@ def delete_all_blackboards():
 def create_blackboard(blackboard_name):
     client_ip = request.remote_addr
     data = request.get_json()
-    validity = data.get('data')
+    validity = data.get('blackboardMessageValitdy')
     return handler.create_blackboard(client_ip, blackboard_name, validity)
 
 @blackboard_bp.route('/blackboards/<blackboard_name>', methods=['DELETE'])
