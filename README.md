@@ -1,17 +1,19 @@
+Certainly! Here is the optimized version of your README:
+
 # BlackBoard
+
 ### About
-A massage application to demonstrate distributed computing.
-The Project was developed during the Lecture "Distributed Systems" at DHBW Ravensburg Campus Friedrichshafen.
-The Group consists of Yannic, Ali, Elias, Lenny, Finn, Gabriel and Christoph.
+A messaging application to demonstrate distributed computing. The project was developed during the lecture "Distributed Systems" at DHBW Ravensburg Campus Friedrichshafen. The group consists of Yannic, Ali, Elias, Lenny, Finn, Gabriel, and Christoph.
 
 ### Get Started
-You can find the Code for the BlackboardServer in `$ cd code\BlackboardServer\`. Start app.py with Python3.12 (`$ python app.py`) for maximum Compatibility.
-You probably have to pull some external Depedencies like `$ pip install Flask`.
-You might have to calm your Firewall down regarding port usage.
-A Flask Server will start that serves the RestAPI on the IP-Address displayed in the commandline.
-Now you can access the API with our Client in `$ cd code\BlackboardClient\` or write your own.
+You can find the code for the BlackboardServer in `$ cd code\BlackboardServer\`. Start `app.py` with Python 3.12 (`$ python app.py`) for maximum compatibility. You will probably need to install some external dependencies, such as `$ pip install Flask`. You might also need to adjust your firewall settings to allow port 5000 usage.
+
+A Flask server will start that serves the REST API on the IP address displayed in the command line. You can now access the API with our client in `$ cd code\BlackboardClient\` or write your own. To gracefully close the server, simply press `Ctrl+C`. While running the server, you can observe relevant events in the log file `log/blackboard.log`.
+
 ### Docs
-For more Information about the API check out the `$ cd doc\` folder. There you can find Information about our System Architecture as well as supported API functions.
+For more information about the API, check out the `$ cd doc\` folder. There you can find information about our system architecture as well as supported API functions.
+
 ### Testing
-Mainly for development purposes and function verification we did write some Tests(`$ py.test.exe`). They might also help gather insights into how the Application works from a Client Perspective and might be therefore useful if you feel overwhelmed or without orientation like some of us might have (only in the beginning of course).
+Mainly for development purposes and function verification, we have written some tests (`$ py.test.exe`). These tests might also help you gather insights into how the application works from a client perspective and might be useful if you feel overwhelmed or disoriented, as some of us did (only in the beginning, of course).
+
 #### Have Fun Scrolling & Deploying
