@@ -20,7 +20,7 @@ class RequestHandler:
     def list_blackboards(self, ip):
         logger.info(f"{ip}: Listing all blackboards")
         blackboards = self.worker.get_bbs()
-        return jsonify(blackboards)
+        return self._create_response(ResponseMessage.SUCCESS)
 
     def delete_all_blackboards(self, ip):
         self.worker.delete_all_bbs()
@@ -50,8 +50,8 @@ class RequestHandler:
         message, state = self.worker.read_bb(blackboard_name)
         if state == 0:
             logger.info(f"{ip}: Reading blackboard '{blackboard_name}'")
-            response = {"message": message}
-            response.status_code = 200
+            response = {"message": message,
+                        "status_code": 200}
             return response
         if state == 1:
             logger.warning(f"{ip}: Blackboard '{blackboard_name}' not found")
