@@ -31,7 +31,7 @@ class RequestHandler:
             logger.info(f"{ip}: Created Blackboard '{blackboard_name}'")
             return self._create_response(ResponseMessage.SUCCESS)
         elif state == 1:
-            logger.waring(f"{ip}: Invalid Parameters for Blackboard '{blackboard_name}'")
+            logger.warning(f"{ip}: Invalid Parameters for Blackboard '{blackboard_name}'")
             return self._create_response(ResponseMessage.INVALID_PARAMETERS)
         elif state == 2:
             logger.info(f"{ip}: Blackboard '{blackboard_name}' already exists")
@@ -81,7 +81,7 @@ class RequestHandler:
             logger.info(f"{ip}: Wrote message to blackboard '{blackboard_name}'")
             return self._create_response(ResponseMessage.SUCCESS)
         if state == 1:
-            logger.waring(f"{ip}: Invalid Parameters for Blackboard '{blackboard_name}'")
+            logger.warning(f"{ip}: Invalid Parameters for Blackboard '{blackboard_name}'")
             return self._create_response(ResponseMessage.INVALID_PARAMETERS)
         if state == 2:
             logger.warning(f"{ip}: Blackboard '{blackboard_name}' not found")
