@@ -1,5 +1,3 @@
-import time
-
 from flask import jsonify
 from response_message import ResponseMessage
 from models import Message, Blackboard
@@ -20,7 +18,7 @@ class RequestHandler:
     def list_blackboards(self, ip):
         logger.info(f"{ip}: Listing all blackboards")
         blackboards = self.worker.get_bbs()
-        return self._create_response(ResponseMessage.SUCCESS)
+        return jsonify(blackboards)
 
     def delete_all_blackboards(self, ip):
         self.worker.delete_all_bbs()
@@ -33,7 +31,7 @@ class RequestHandler:
             logger.info(f"{ip}: Created Blackboard '{blackboard_name}'")
             return self._create_response(ResponseMessage.SUCCESS)
         elif state == 1:
-            logger.warning(f"{ip}: Invalid Parameters for Blackboard '{blackboard_name}'")
+            logger.waring(f"{ip}: Invalid Parameters for Blackboard '{blackboard_name}'")
             return self._create_response(ResponseMessage.INVALID_PARAMETERS)
         elif state == 2:
             logger.info(f"{ip}: Blackboard '{blackboard_name}' already exists")
@@ -50,8 +48,8 @@ class RequestHandler:
         message, state = self.worker.read_bb(blackboard_name)
         if state == 0:
             logger.info(f"{ip}: Reading blackboard '{blackboard_name}'")
-            response = {"message": message,
-                        "status_code": 200}
+            response = jsonify(message)
+            response.status_code = 200
             return response
         if state == 1:
             logger.warning(f"{ip}: Blackboard '{blackboard_name}' not found")
@@ -83,7 +81,7 @@ class RequestHandler:
             logger.info(f"{ip}: Wrote message to blackboard '{blackboard_name}'")
             return self._create_response(ResponseMessage.SUCCESS)
         if state == 1:
-            logger.warning(f"{ip}: Invalid Parameters for Blackboard '{blackboard_name}'")
+            logger.waring(f"{ip}: Invalid Parameters for Blackboard '{blackboard_name}'")
             return self._create_response(ResponseMessage.INVALID_PARAMETERS)
         if state == 2:
             logger.warning(f"{ip}: Blackboard '{blackboard_name}' not found")
