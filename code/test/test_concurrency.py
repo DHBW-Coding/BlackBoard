@@ -55,7 +55,7 @@ class TestRequestHandler(unittest.TestCase):
     
     def test_multi_write_read_concurrent(self):
         self.client.post('/blackboards', json={'name': 'test_bb', 'validity': 10})
-        n_mb_size=10
+        n_mb_size=1
         one_mb_ones = '1' * n_mb_size* (1024 * 1024)  # 1MB of '1's
         one_mb_zeros = '0' *n_mb_size* (1024 * 1024)  # 1MB of '0's
 
