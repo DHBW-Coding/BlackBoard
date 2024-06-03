@@ -48,7 +48,7 @@ class RequestHandler:
         message, state = self.worker.read_bb(blackboard_name)
         if state == 0:
             logger.info(f"{ip}: Reading blackboard '{blackboard_name}'")
-            response = jsonify({"message": message})
+            response = {"message": message}
             response.status_code = 200
             return response
         if state == 1:
