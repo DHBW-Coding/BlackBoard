@@ -21,7 +21,7 @@ class BlackboardWorker:
     def writing_bb(self, name, message):
         if name not in self.blackboards:
             return 2
-        if len(message) > 255:
+        if len(message) > 1024*1024*1024:
             return 1
         self.blackboards[name].set_current_msg(message)
         return 0
