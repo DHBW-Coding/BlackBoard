@@ -18,7 +18,7 @@ class RequestHandler:
     def list_blackboards(self, ip):
         logger.info(f"{ip}: Listing all blackboards")
         blackboards = self.worker.get_bbs()
-        return jsonify(blackboards)
+        return self._create_response(ResponseMessage.SUCCESS)
 
     def delete_all_blackboards(self, ip):
         self.worker.delete_all_bbs()

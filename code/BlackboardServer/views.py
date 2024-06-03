@@ -44,5 +44,5 @@ def clear_blackboard(blackboard_name):
 @blackboard_bp.route('/blackboards/<blackboard_name>/write', methods=['POST'])
 def write_to_blackboard(blackboard_name):
     client_ip = request.remote_addr
-    data = request.data.decode('utf-8')
+    data = request.json.get('messageText')
     return handler.write_to_blackboard(client_ip, blackboard_name, data)
