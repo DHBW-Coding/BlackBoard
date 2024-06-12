@@ -6,6 +6,8 @@ import time
 import unittest
 import concurrent.futures
 
+#to actually test this ramp up the maximum text size of the server to 1024*1024*1024 (1GB) (change worker.py wrinting_bb())
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../BlackboardServer')))
 from BlackboardServer.handlers import RequestHandler
@@ -51,7 +53,6 @@ class TestRequestHandler(unittest.TestCase):
             response = self.client.get('/blackboards/test_bb/message')
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.get_json()['message'], 'test message{i}')
-            print(".")
     
     def test_multi_write_read_concurrent(self):
         self.client.post('/blackboards', json={'name': 'test_bb', 'validity': 10})

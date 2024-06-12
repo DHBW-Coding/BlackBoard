@@ -1,6 +1,10 @@
 import unittest
 from flask import Flask, request, jsonify
-from handlers import RequestHandler
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../BlackboardServer')))
+from BlackboardServer.handlers import RequestHandler
 import json
 
 
@@ -69,7 +73,7 @@ class TestRequestHandler(unittest.TestCase):
         self.client.post('/blackboards/test_bb/write', json={'message': 'test message'})
         response = self.client.get('/blackboards/test_bb/message')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.get_json()['message'], 'test message')
+        self.assertEqual(response.get_json()["message"], {"message": "test message"})
 
     def test_read_blackboard_not_found(self):
         response = self.client.get('/blackboards/nonexistent_bb/message')
