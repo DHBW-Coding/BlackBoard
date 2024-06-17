@@ -3,6 +3,8 @@ from response_message import ResponseMessage
 from models import Message, Blackboard
 from worker import BlackboardWorker
 import logging
+from flask import Response, json
+import json.decoder
 
 logger = logging.getLogger('blackboard')
 
@@ -48,8 +50,17 @@ class RequestHandler:
         message, state = self.worker.read_bb(blackboard_name)
         if state == 0:
             logger.info(f"{ip}: Reading blackboard '{blackboard_name}'")
-            response = jsonify(message)
-            response.status_code = 200
+            try:
+                if isinstance(message, str):
+                    message = json.loads(message)
+            except json.JSONDecodeError as e:
+                logger.error(f"Failed to decode JSON string: {e}")
+                response = jsonify({"error": "Invalid JSON format"})
+                response.status_code = 400
+                return response
+            response_data = json.dumps(message)
+
+            response = Response(response=response_data, status=200, mimetype='application/json')
             return response
         if state == 1:
             logger.warning(f"{ip}: Blackboard '{blackboard_name}' not found")

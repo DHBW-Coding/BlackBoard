@@ -70,7 +70,7 @@ class TestRequestHandler(unittest.TestCase):
 
     def test_read_blackboard_success(self):
         self.client.post('/blackboards', json={'name': 'test_bb', 'validity': 10})
-        self.client.post('/blackboards/test_bb/write', json={'message': 'test message'})
+        self.client.post('/blackboards/test_bb/write', json={'message ': 'test message'})
         response = self.client.get('/blackboards/test_bb/message')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get_json()["message"], {"message": "test message"})
@@ -110,7 +110,7 @@ class TestRequestHandler(unittest.TestCase):
 
     def test_write_to_blackboard_invalid_parameters(self):
         self.client.post('/blackboards', json={'name': 'test_bb', 'validity': 10})
-        response = self.client.post('/blackboards/test_bb/write', json={'message': 'x' * 256})
+        response = self.client.post('/blackboards/test_bb/write', json={'message': 'x' * 10000000})
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.get_json(), {"error": "Invalid Parameters provided."})
 

@@ -20,7 +20,7 @@ if __name__ == '__main__':
     app = create_app()
     signal.signal(signal.SIGINT, signal_handler)
     try:
-        app.run(host='0.0.0.0', port=5000, threaded=True)
+        app.run(host='0.0.0.0', port=3000, threaded=True)
     except KeyboardInterrupt:
         print('Server interrupted by user')
         logger.info('Server interrupted by Server Commandline')
