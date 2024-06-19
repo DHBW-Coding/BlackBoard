@@ -1,0 +1,15 @@
+[package]
+name = "crabking"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+api_calls = {path="./api_calls"}
+colored = "2.1.0"
+reedline = "0.32.0"
+regex = "1.10.4"
+reqwest = "0.12.4"
+futures = "0.3.30"
+clap = { version = "4.5.4", features = ["derive"] }
