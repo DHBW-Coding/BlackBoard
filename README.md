@@ -10,11 +10,12 @@ You can find the code for the BlackboardServer in `$ cd code\BlackboardServer\`.
 A Flask server will start that serves the REST API on the IP address displayed in the command line. To gracefully close the server, simply press `Ctrl+C`. While running the server, you can observe relevant events in the log file `code\BlackboardServer\blackboard.log`.
 
 #### Client
-You can now access the API with our client in `$ cd code\BlackboardClient\` or write your own. A precompiled .exe file for x64 Windows Systems is provided in this directoire as well. To start the client just type `.\client.exe -p 3000 -b 127.0.0.1` replacing 3000 with your port the server is trough and 127.0.0.1 with the ip address the server is running on. For more information you can always type `.\crabking.exe -h`. 
+You can initialize our Client with `git submodule update --init --recursive --remote`.
+You can now access the API with our client in `$ cd code\BlackboardClient\` or write your own. A precompiled .exe file for x64 Windows Systems is provided in this directoire as well. To start the client just type `.\crabking.exe -p 3000 -b 127.0.0.1` replacing 3000 with your port the server is trough and 127.0.0.1 with the ip address the server is running on. For more information you can always type `.\crabking.exe -h`. 
 
-As soon as the client start you can display all available commands by just typing `help`. For example to get started and create a Blackboard simply type `create "My Blackboard" 100`. You can always exit the application by pressing `Ctrl+C`.
+As soon as the client start you can display all available commands by just pressing enter or typing `help`. For example to get started and create a Blackboard simply type `create "My Blackboard" 100`. You can always exit the application by pressing `Ctrl+C` or typing `exit`.
 
-To build the client for your specific system pleas follow the README.md file in the `code\BlackboardClient\` directoire.
+To build the client for your specific system pleas follow the README.md file in the `code\BlackboardClient\` directory.
 
 ### Docs
 For more information about the API, check out the `$ cd doc\` folder. There you can find information about our system architecture as well as supported API functions.
