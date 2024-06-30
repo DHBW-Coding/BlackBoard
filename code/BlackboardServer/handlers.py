@@ -20,7 +20,11 @@ class RequestHandler:
     def list_blackboards(self, ip):
         logger.info(f"{ip}: Listing all blackboards")
         blackboards = self.worker.get_bbs()
-        return jsonify(blackboards)
+        # Use json.dumps to convert the blackboards list to a JSON string, ensuring ASCII characters are not escaped
+        response_data = json.dumps(blackboards, ensure_ascii=False)
+        # Create a Response object, specifying the content type and character set
+        response = Response(response=response_data, mimetype='application/json', content_type='application/json; charset=utf-8')
+        return response
 
     def delete_all_blackboards(self, ip):
         self.worker.delete_all_bbs()
@@ -58,7 +62,7 @@ class RequestHandler:
                 response = jsonify({"error": "Invalid JSON format"})
                 response.status_code = 400
                 return response
-            response_data = json.dumps(message)
+            response_data = json.dumps(message,ensure_ascii=False)
 
             response = Response(response=response_data, status=200, mimetype='application/json')
             return response
