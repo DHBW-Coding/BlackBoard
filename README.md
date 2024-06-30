@@ -6,8 +6,9 @@ A messaging application to demonstrate distributed computing. The project was de
 ### Get Started
 
 #### Server
-You can find the code for the BlackboardServer in `$ cd code\BlackboardServer\`. Start `app.py` with Python 3.12 (`$ python app.py`) for maximum compatibility. You will probably need to install some external dependencies, such as `$ pip install Flask`. To ensure all external dependencies are installed pleas execute the command `$ pip install -r requirements.txt`, while in the root directoire of this project. You might also need to adjust your firewall settings to allow port 5000 usage.
-A Flask server will start that serves the REST API on the IP address displayed in the command line. To gracefully close the server, simply press `Ctrl+C`. While running the server, you can observe relevant events in the log file `code\BlackboardServer\blackboard.log`.
+You can find the code for the BlackboardServer in `$ cd code\BlackboardServer\`. To ensure all external dependencies are installed create a venv `python -m venv venvbb` in the root folder, activate it `.\venvbb\Scripts\activate` and install the needed dependencies with the command `$ pip install -r requirements.txt`. Start `app.py` with Python 3.12 (`$ python app.py`) in a venv for maximum compatibility. 
+You might need to adjust your firewall settings on Start to allow port 5000 usage.
+A Flask server will start that serves the REST API on the IP address displayed in the command line. To gracefully close the server, simply press `Ctrl+C`. While running the server, you can observe relevant events in the log file `code\BlackboardServer\blackboard.log` and on the Console.
 
 #### Client
 You can initialize our Client with `git submodule update --init --recursive --remote`.
