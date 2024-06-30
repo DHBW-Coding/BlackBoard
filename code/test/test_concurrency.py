@@ -65,6 +65,7 @@ class TestRequestHandler(unittest.TestCase):
             response = self.client.post(f'/blackboards/test_bb{i}/write', json={'message': one_mb_ones})
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.get_json(), {"message": "Success"})
+            
         def create_bb(i):
             self.client.post('/blackboards', json={'name': f'test_bb{i}', 'validity': 10})
             response = self.client.post(f'/blackboards/test_bb{i}/write', json={'message': one_mb_zeros})
