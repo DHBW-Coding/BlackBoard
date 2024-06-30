@@ -1,0 +1,3 @@
+[submodule "code/BlackboardClient"]
+	path = code/BlackboardClient
+	url = https://github.com/indicatelovelace/crabking
